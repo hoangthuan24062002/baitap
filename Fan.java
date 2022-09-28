@@ -1,56 +1,51 @@
-public class Fan {
+public class Quat {
+    String thuongHieu;
+    String loai;
+    float gia;
     int congSuat;
     int capDo;
-    String loai;
-    String ThuongHieu;
-    float gia;
-    boolean quay_ngang;
+    boolean quayNgang;
 
-    public Fan(String loai, String ThuongHieu, int congSuat, float gia) {
+    public Quat(String thuongHieu, String loai, float gia, int congSuat) {
+        this.thuongHieu = thuongHieu;
         this.loai = loai;
-        this.ThuongHieu = ThuongHieu;
+        this.gia = gia;
         this.congSuat = congSuat;
         this.capDo = 0;
-        this.gia = gia;
+        this.quayNgang = false;
     }
 
-    void chuyenSo(int So) {
-        this.capDo +=So;
-        System.out.println("quat chuyen so "+this.capDo);
+    void chuyenSo(int so){
+        if(so>=0)
+            this.capDo = so;
+        else
+            System.out.println("So khong hop le");
+    }
+    void chuyenTrangThaiQuay(){
+        this.quayNgang = !this.quayNgang;
     }
 
-    void chuyentrangthaiquay() {
-        if (this.quay_ngang) {
-            this.quay_ngang = false;
-            System.out.println("quat quay ngang");
-        } else {
-            System.out.println("quat ko quay ngang");
+    void bat(){
+        if(this.capDo==0){
+            chuyenSo(1);
         }
     }
-
-    public void bat() {
-        System.out.println("bat quat len ");
+    void tat(){
+        chuyenSo(0);
     }
 
-    public void tat() {
-        System.out.println("tat quat di ");
+    @Override
+    public String toString() {
+        return "Quat{" +
+                "thuongHieu='" + thuongHieu + '\'' +
+                ", loai='" + loai + '\'' +
+                ", gia=" + gia +
+                ", congSuat=" + congSuat +
+                ", capDo=" + capDo +
+                ", quayNgang=" + quayNgang +
+                '}';
     }
-
-    public void hienthi() {
-        System.out.println(" quat" + this.ThuongHieu + this.loai + this.gia);
-    }
-
-    public static void main(String[] args) {
-        Fan senko1 = new Fan("senko", "VIETNAM", 2000, 10000);
-        Fan samsung2 = new Fan("samsung", "HANQUOC", 3000, 20000);
-        senko1.hienthi();
-        samsung2.hienthi();
-        senko1.bat();
-        samsung2.tat();
-        senko1.chuyentrangthaiquay();
-        senko1.chuyenSo(2);
-        samsung2.chuyenSo(3);
-        samsung2.chuyentrangthaiquay();
-
+    void hienThi(){
+        System.out.println(this);
     }
 }
